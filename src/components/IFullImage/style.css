@@ -1,0 +1,92 @@
+.page-bg {
+    z-index: -1;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    transform: translate3d(0, 0, 0);
+    background-image: url('./img/page-bg.jpg');
+    background-position: bottom left;
+    background-repeat: repeat-x;
+    background-size: 1300px auto;
+    width: 3900px;
+    animation: bg 90s linear infinite;
+}
+
+.bg-dot {
+    z-index: -1;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    transform: translate3d(0, 0, 0);
+    background-image: url('./img/bg-dot.png');
+    background-position: bottom left;
+    background-repeat: repeat-x;
+    background-size: 800px auto;
+    width: 2400px;
+    animation: bg2 90s linear infinite;
+}
+
+@keyframes bg {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-1300px, 0, 0);
+    }
+}
+
+@keyframes bg2 {
+    0% {
+        transform: translate3d(-1300px, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fixedcon .control {
+    position: fixed;
+    right: 0;
+    top: 17px;
+    width: 150px;
+    line-height: 0;
+    z-index: 12;
+    font-size: 0;
+    text-align: right
+}
+
+.fixedcon .control i {
+    display: none;
+    cursor: pointer;
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7)
+}
+
+.fixedcon .control .music {
+    width: 28px;
+    height: 28px;
+    background-image: url('./img/music_on.png');
+}
+
+.fixedcon .control .music.mute {
+    background-image: url('./img/music_off.png');
+}
+
+.fixedcon .control .fullsc {
+    background-image: url('./img/fullscreen.png');
+    width: 28px;
+    height: 28px
+}
+
+.fixedcon .control .fullsc.enabled {
+    background-image: url('./img/fullscreen_on.png');
+}
+.fixedcon .control i.show {
+    display: inline-block;
+    margin: 0 20px
+}
