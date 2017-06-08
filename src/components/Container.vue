@@ -1,23 +1,21 @@
 <template>
   <div>
     <full-image/>
-    
+    <div>
+      <v-header/>
+    </div>
   </div>
 </template>
 
 <script>
   import FullImage from './IFullImage/index'
-  import 'animate.css';
+  import VHeader from './Header';
 
   export default {
     components: {
-      FullImage
+      FullImage,
+      VHeader
     }
   }
 
 </script>
-
-<style scoped lang="less">
-  @white: #fff;
- 
-</style>
