@@ -1,25 +1,27 @@
 <template>
   <div>
-    <div class="wrap-title">各地留言数排名</div>
-    <div class="sub-title">COMMENT NUM TOP 8</div>
-    <div ref="chart" class="chart data-wrapper">
+    <div ref="chart" class="chart">
     </div>
   </div>
 </template>
 
 <script>
   import echarts from 'echarts';
-  import pieChart from './js/barOption.js';
+  import chinaJson from './js/china.json';
+  import mapChart from './js/mapOption2.js';
 
   export default {
     data() {
       return {
-        cityData: []
+        commentData: []
       }
+    },
+    components: {
+
     },
     computed: {
       chart() {
-        return echarts.init(this.$refs.chart);
+        return echarts.init(this.$refs.chart)
       }
     },
     methods: {
@@ -32,7 +34,7 @@
         }
       },
       getData() {
-        let cityData = [{
+        this.commentData = [{
             name: '上海',
             value: 95
           },
@@ -101,15 +103,30 @@
             value: 120
           }
         ];
-        cityData.sort((a, b) => b.value - a.value);
-        this.cityData = cityData.slice(0, 8);
+      },
+      refreshMap() {
+        this.getData();
+        this.chart.setOption(mapChart.init());
+
+        let opData = [];
+        this.commentData.forEach(item=>{
+          let maxI = Math.ceil(item.value/2);
+          for(let i=0;i<maxI;i++){
+            opData.push({
+              name:item.name,
+              value:2
+            });
+          }
+        });
+        setTimeout(() => {
+          this.chart.setOption(mapChart.refresh(this.commentData));
+        }, 1000);
       },
       refreshChart() {
-        this.chart.setOption(pieChart.init());
-        this.chart.setOption(pieChart.refresh(this.cityData));
+        this.refreshMap();
       },
       init() {
-        this.getData();
+        echarts.registerMap('china', chinaJson);
         this.refreshChart();
         this.initEvent();
       }
@@ -122,46 +139,8 @@
 </script>
 
 <style scoped lang="less">
-  .data-wrapper {
-    border-radius: 0px;
-    border-style: solid;
-    border-width: 16px 17px 17px;
-    border-image-source: url("./img/data-wrapper.png");
-    border-image-slice: 16 17 17 fill;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: repeat;
-    background: none;
-  }
-
-  .chart {
-    height: 140px;
+  .chart {    
     width: 100%;
+    height: 700px;
   }
-
-  .text {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .wrap-title {
-    color: #fff;
-    height: 20px;
-    font-size: 22px;
-    .text;
-  }
-
-  .sub-title {
-    width: 100%;
-    height: 32px;
-    color: rgb(255, 204, 0);
-    font-size: 10px;
-    .text;
-  }
-
 </style>

@@ -8,7 +8,7 @@
     </div>
     <div class="beibei_wrapper">
       <div class="beibei"></div>
-    </div>    
+    </div>
     <div class="text">
       <div class="number">2</div>
       <div class="word">
@@ -21,19 +21,42 @@
     </div>
     <div class="counter-container">
       <span class="prefix">留言条数</span>
-      <span class="number">3</span>
-      <span class="number">5</span>
-      <span class="number">2</span>
-      <span class="number">7</span>
-      <span class="number">8</span>
+      <countup :end-val="counter.end" :duration="2" :options="counter.options"></countup>
     </div>
   </div>
 </template>
 
 <script>
+  import Countup from './Countup/';
+  // 此处使用自定义Countup,将数值分离
   export default {
     components: {
-
+      Countup
+    },
+    data() {
+      return {
+        counter: {
+          start: 0,
+          end: 0,
+          options:{
+            useGrouping:false
+          }
+        }
+      }
+    },
+    methods: {
+      autoAdd() {
+        setInterval(() => {
+          this.refreshCounter(this.counter.end + Math.random() * 3000);
+        }, 3000);
+      },
+      refreshCounter(val){
+          this.counter.start = this.counter.end;
+          this.counter.end = val;
+      }
+    },
+    mounted() {
+      this.autoAdd();
     }
   }
 
@@ -41,7 +64,7 @@
 
 <style scoped lang="less">
   @white: #fff;
-  
+
   .center {
     display: flex;
     justify-content: center;
@@ -74,14 +97,14 @@
   .beibei_wrapper {
     display: flex;
     justify-content: flex-end;
-    width:38%;
+    width: 38%;
     margin-top: -310px;
     .beibei {
-    width: 160px;
-    height: 180px;
-    background-image: url('./img/beibei.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+      width: 160px;
+      height: 180px;
+      background-image: url('./img/beibei.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
   }
 

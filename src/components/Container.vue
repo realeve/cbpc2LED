@@ -59,7 +59,7 @@
     height: @content-height;
   }
   .right-content {
-    padding: 0px 45px 0px 0px;
+    padding: 0px 15px 0px 0px;
     height: @content-height;
   }
 
