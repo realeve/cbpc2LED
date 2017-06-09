@@ -8,13 +8,14 @@ let getLineData = (hour = 10) => {
 }
 
 function init() {
-    let lightBlue = '#0ecdec';
+    let axisColor = '#585b86';
+    let lineColor = '#00d7fc';
     let option = {
         grid: {
-            left: '3%',
+            left: '0',
             right: '3%',
-            bottom: '3%',
-            top: '3%',
+            bottom: '0',
+            top: '5px',
             containLabel: true
         },
         tooltip: {
@@ -30,20 +31,21 @@ function init() {
             },
             axisLine: {
                 lineStyle: {
-                    color: lightBlue,
+                    color: axisColor,
                     width: 2,
                 }
             }
         }],
         yAxis: [{
             type: 'value',
+            splitNumber: 4,
             splitLine: {
                 show: false,
             },
             axisLine: {
                 show: false,
                 lineStyle: {
-                    color: lightBlue,
+                    color: axisColor,
                     width: 1,
                 }
             },
@@ -59,7 +61,7 @@ function init() {
             animation: false,
             // 关初始动画
             hoverAnimation: false,
-            color: [lightBlue, '#F7023f'],
+            color: [lineColor, '#F7023f'],
             data: [],
             symbolSize: 0,
             dimensions: ['时间', '评论数']

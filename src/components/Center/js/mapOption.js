@@ -55,8 +55,8 @@ function getFlightInfo(i) {
         zlevel: 1,
         effect: {
             show: true,
-            period: 3 + Math.random() * i,
-            trailLength: 0.5,
+            period: Math.random() * 6, // * i,
+            trailLength: 0.7,
             color: color[i],
             symbolSize: 2,
             opacity: 0.7,

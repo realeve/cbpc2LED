@@ -1,17 +1,14 @@
 <template>
   <div>
-    <div ref="map" class="chart">
-    </div>
-    <div ref="line" class="chart2">
+    <div ref="chart" class="chart">
     </div>
   </div>
 </template>
 
 <script>
   import echarts from 'echarts';
-  import chinaJson from './Map/china.json';
-  import mapChart from './Map/mapOption.js';
-  import lineChart from './Map/lineOption.js';
+  import chinaJson from './js/china.json';
+  import mapChart from './js/mapOption.js';
 
   export default {
     data() {
@@ -24,16 +21,12 @@
     },
     computed: {
       chart() {
-        return {
-          map: echarts.init(this.$refs.map),
-          line: echarts.init(this.$refs.line)
-        };
+        return echarts.init(this.$refs.chart)
       }
     },
     methods: {
       resizeChart() {
-        this.chart.map.resize;
-        this.chart.line.resize;
+        this.chart.resize();
       },
       initEvent() {
         window.onresize = () => {
@@ -113,8 +106,8 @@
       },
       refreshMap() {
         this.getData();
-        this.chart.map.setOption(mapChart.init());
-        
+        this.chart.setOption(mapChart.init());
+
         // let opData = [];
         // this.commentData.forEach(item=>{
         //   let maxI = Math.ceil(item.value/2);
@@ -126,20 +119,11 @@
         //   }
         // });
         setTimeout(() => {
-          this.chart.map.setOption(mapChart.refresh(this.commentData));
+          this.chart.setOption(mapChart.refresh(this.commentData));
         }, 1000);
-      },
-      refreshLine() {
-        let lastData = lineChart.refresh();
-        this.chart.line.setOption(lineChart.init());  
-        setInterval(() => {
-          lastData = lineChart.refreshLine(lastData.series[0].data);
-          this.chart.line.setOption(lastData);
-        }, 500);
       },
       refreshChart() {
         this.refreshMap();
-        this.refreshLine();
       },
       init() {
         echarts.registerMap('china', chinaJson);
@@ -155,15 +139,8 @@
 </script>
 
 <style scoped lang="less">
-  .chart,
-  .chart2 {
+  .chart {    
     width: 100%;
     height: 700px;
   }
-
-  .chart2 {
-    height: 150px;
-    margin-top:-40px;
-  }
-
 </style>

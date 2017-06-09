@@ -3,16 +3,14 @@
     <full-image/>
     <v-header/>
     <flexbox :gutter="0" wrap="wrap" class="content">
-      <flexbox-item :span="1/4">
-        <div class="left-content">占位文字</div>
+      <flexbox-item :span="2/7">
+          <v-left class="left-content"/>
       </flexbox-item>
-      <flexbox-item :span="1/2">
-        <div class="center-content">
-          <v-map/>
-        </div>
+      <flexbox-item :span="3/7">
+          <v-center class="center-content"/>
       </flexbox-item>
-      <flexbox-item :span="1/4">
-        <div class="right-content">占位文字</div>
+      <flexbox-item :span="2/7">
+          <v-right class="right-content"/>
       </flexbox-item>
     </flexbox>
   </div>
@@ -21,7 +19,10 @@
 <script>
   import FullImage from './IFullImage/index'
   import VHeader from './Header/';
-  import VMap from './Map.vue';
+  import VCenter from './Center.vue';
+  import VLeft from './Left.vue';
+  import VRight from './Right.vue';
+
 
   import {
     Flexbox,
@@ -34,28 +35,33 @@
       FlexboxItem,
       FullImage,
       VHeader,
-      VMap
+      VLeft,
+      VCenter,
+      VRight
     }
   }
 
 </script>
 <style scoped lang="less">
-  @content-height:700px;
+  @content-height:750px;
+  @div-offset:300px;
   .content {
-    margin-top: -200px;
+    margin-top: -@div-offset;
     color: #fff;
   }
 
   .center-content {
-    padding: 20px;
-    padding-top: 220px;
+    padding: 0 50px;
+    padding-top: @div-offset+20px;
   }
 
-  .left-content,
-  .right-content {
-    padding: 20px;
+  .left-content {
+    padding: 0px 0px 0px 10px;
     height: @content-height;
-    background: rgba(38, 27, 77, 0.8);
+  }
+  .right-content {
+    padding: 0px 45px 0px 0px;
+    height: @content-height;
   }
 
 </style>
