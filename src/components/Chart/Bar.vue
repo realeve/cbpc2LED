@@ -1,5 +1,7 @@
 <template>
   <div>
+    <div class="wrap-title">各地留言数排名</div>
+    <div class="sub-title">TOP 8</div>
     <div ref="chart" class="chart data-wrapper">
     </div>
   </div>
@@ -99,7 +101,7 @@
             value: 120
           }
         ];
-        cityData.sort((a,b) => b.value - a.value);
+        cityData.sort((a, b) => b.value - a.value);
         this.cityData = cityData.slice(0, 8);
       },
       refreshChart() {
@@ -133,8 +135,33 @@
   }
 
   .chart {
-    height: 200px;
+    height: 140px;
     width: 100%;
+  }
+
+  .text {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .wrap-title {
+    color: #fff;
+    height: 20px;
+    font-size: 22px;
+    .text;
+  }
+
+  .sub-title {
+    width: 100%;
+    height: 32px;
+    color: rgb(255, 204, 0);
+    font-size: 10px;
+    .text;
   }
 
 </style>

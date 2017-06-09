@@ -64,7 +64,17 @@ function init() {
             color: [lineColor, '#F7023f'],
             data: [],
             symbolSize: 0,
-            dimensions: ['时间', '评论数']
+            dimensions: ['时间', '评论数'],
+            // itemStyle: {
+            //     normal: {
+            //         lineStyle: {
+            //             shadowColor: '#2e76fd',
+            //             shadowBlur: 4,
+            //             shadowOffsetX: 0,
+            //             shadowOffsetY: 0
+            //         }
+            //     }
+            // }
         }]
     };
     return option;
@@ -93,6 +103,9 @@ let refreshLine = (data) => {
         if (second > 59) {
             second = 0;
             hour++;
+        }
+        if (hour > 23) {
+            hour = 0;
         }
         let dateString = date + ' ' + hour + ':' + (second <= 9 ? '0' : '') + second;
         data.push([dateString, Math.ceil(Math.random() * 3000)]);

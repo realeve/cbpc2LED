@@ -98,7 +98,7 @@ function init() {
                     areaColor: '#1273bc'
                 }
             },
-            zoom: 1.1,
+            zoom: 1.2,
             regions: [{
                 name: '四川',
                 selected: true

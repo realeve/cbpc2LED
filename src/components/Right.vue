@@ -1,15 +1,24 @@
 <template>
   <div>
-    <v-bar/>
+    <top-comment/>
+    <real-comment class="margin-top-20"/>
   </div>
 </template>
 
 <script>
-  import VBar from './Right/Bar.vue';
+  import TopComment from './Right/TopComment.vue';
+  import RealComment from './Right/RealComment.vue';
 
   export default {
     components: {
-      VBar
+      TopComment,
+      RealComment
     }
   }
 </script>
+
+<style scoped lang="less">
+  .margin-top-20{
+    margin-top:30px;
+  }
+</style>

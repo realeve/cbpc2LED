@@ -10,7 +10,7 @@ function init() {
             containLabel: true
         },
         tooltip: {
-            trigger: 'axis'
+            trigger: 'item'
         },
         xAxis: {
             type: 'category',
@@ -48,14 +48,21 @@ function init() {
             }
         }],
         series: [{
+            id: 'stack',
+            type: 'bar',
+            // stack: 'all',
+            silent: true,
+            barGap: '-100%',
+            color: ['#153465'],
+            barMaxWidth: 20,
+            data: []
+        }, {
             id: 'line',
             type: 'bar',
-            smooth: true,
-            // slient: true,
-            animation: false,
-            // 关初始动画
+            // stack: 'all',
             hoverAnimation: false,
             color: [lineColor],
+            barMaxWidth: 20,
             data: []
         }]
     };
@@ -65,6 +72,7 @@ function init() {
 let refresh = (Data) => {
     let xAxis = Data.map(item => item.name);
     let yAxis = Data.map(item => item.value);
+    let stackData = yAxis.map(item => yAxis[0]);
     let option = {
         xAxis: {
             data: xAxis
@@ -72,6 +80,9 @@ let refresh = (Data) => {
         series: [{
             id: 'line',
             data: yAxis,
+        }, {
+            id: 'stack',
+            data: stackData
         }]
     };
     return option;

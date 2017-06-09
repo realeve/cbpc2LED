@@ -1,28 +1,34 @@
 <template>
   <div>
-    <v-line/>
-    <v-line style="padding-top:50px;"/>
-    <v-line style="padding-top:50px;"/>
-    <v-line style="padding-top:50px;"/>
+    <div>
+      <new-users/>
+      <v-chart class="margin-top-10"/>
+      <lucky-users class="margin-top-10"/>
+      <qr-tip class="margin-top-10"/>
+    </div>
+
   </div>
 </template>
 
 <script>
-  import VLine from './Center/Line.vue';
-  import VMap from './Center/Map.vue';
+  import VChart from './Chart/Bar.vue';
+  import QrTip from './Left/QrTip.vue';
+  import NewUsers from './Left/NewUsers.vue';
+  import LuckyUsers from './Left/LuckyUsers.vue';
 
   export default {
     components: {
-      VLine,
-      VMap
+      VChart,
+      QrTip,
+      NewUsers,
+      LuckyUsers
     },
-    computed: {
-      chart() {
-        return {
-          map: echarts.init(this.$refs.map),
-          line: echarts.init(this.$refs.line)
-        };
-      }
-    }
   }
+
 </script>
+
+<style scoped lang="less">
+  .margin-top-10{
+    margin-top:10px;
+  }
+</style>

@@ -23,7 +23,6 @@
   import VLeft from './Left.vue';
   import VRight from './Right.vue';
 
-
   import {
     Flexbox,
     FlexboxItem
@@ -43,7 +42,7 @@
 
 </script>
 <style scoped lang="less">
-  @content-height:750px;
+  @content-height:780px;
   @div-offset:300px;
   .content {
     margin-top: -@div-offset;

@@ -62,10 +62,10 @@
   .back_wrapper {
     .center;
     .back_img {
-      margin-top: -160px;
+      margin-top: -155px;
       width: 720px;
       height: 312px;
-      background-image: url('./img/main_back.png');
+      background-image: url('./img/main.png');
       background-repeat: no-repeat;
       background-size: 100% 100%;
     }
@@ -75,10 +75,10 @@
     display: flex;
     justify-content: flex-end;
     width:38%;
-    margin-top: -305px;
+    margin-top: -310px;
     .beibei {
-    width: 200px;
-    height: 220px;
+    width: 160px;
+    height: 180px;
     background-image: url('./img/beibei.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -88,7 +88,7 @@
   @main-text-size: 100pt;
   .text {
     .center;
-    margin-top: -210px;
+    margin-top: -170px;
     color: @white; // text-shadow: 0 5px 14px #c4b59d, 1px -1px 1px #fff;
     .number {
       line-height: 0pt;
