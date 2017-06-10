@@ -1,0 +1,16 @@
+ 
+ ::-webkit-scrollbar {
+     display: none;
+ }
+ 
+ :-webkit-full-screen {
+     background-color: transparent;
+ }
+ 
+ :-moz-full-screen {
+     background-color: transparent;
+ }
+ 
+ :fullscreen {
+     background-color: transparent;
+ }

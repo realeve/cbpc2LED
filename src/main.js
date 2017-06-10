@@ -9,13 +9,16 @@ import store from './store';
 import resource from 'vue-resource';
 Vue.use(resource);
 
+import 'animate.css';
+import './assets/css/reset.css';
+
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')

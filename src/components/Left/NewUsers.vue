@@ -5,7 +5,7 @@
     <div class="data-wrapper">
       <div class="user-info" v-for="i of 10" :key="i">
         <img class="header" src="/static/avatar.jpg">
-        <div class="nickname last">宾不厌诈</div>
+        <div class="nickname last">宾不厌诈{{i}}</div>
       </div>
     </div>
   </div>
