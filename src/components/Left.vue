@@ -2,9 +2,9 @@
   <div>
     <div>
       <new-users/>
-      <v-chart class="margin-top-10"/>
-      <lucky-users class="margin-top-10"/>
-      <qr-tip class="margin-top-10"/>
+      <v-chart class="margin-top-15"/>
+      <lucky-users class="margin-top-15"/>
+      <qr-tip class="margin-top-15"/>
     </div>
 
   </div>
@@ -28,7 +28,7 @@
 </script>
 
 <style scoped lang="less">
-  .margin-top-10{
-    margin-top:10px;
+  .margin-top-15{
+    margin-top:15px;
   }
 </style>

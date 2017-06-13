@@ -52,7 +52,7 @@
 
   .qr-text {
     width: 100%;
-    max-width: 270px;
+    max-width: 250px;
     .wrap-title {
       color: #fff;
       font-size: 22px;

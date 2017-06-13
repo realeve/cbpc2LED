@@ -4,13 +4,13 @@
     <v-header/>
     <flexbox :gutter="0" wrap="wrap" class="content">
       <flexbox-item :span="2/7">
-          <v-left class="left-content"/>
+        <v-left class="left-content" />
       </flexbox-item>
       <flexbox-item :span="3/7">
-          <v-center class="center-content"/>
+        <v-center class="center-content" />
       </flexbox-item>
       <flexbox-item :span="2/7">
-          <v-right class="right-content"/>
+        <v-right class="right-content" />
       </flexbox-item>
     </flexbox>
   </div>
@@ -42,25 +42,23 @@
 
 </script>
 <style scoped lang="less">
-  @content-height:460px;
-  @div-offset:300px;
+  @padding-top: 170px;
+  @div-offset: 325px;
   .content {
     margin-top: -@div-offset;
     color: #fff;
   }
 
   .center-content {
-    padding: 0 10px 0 50px;
-    padding-top: 220px;
+    padding: @padding-top+80 10px 0 50px;
   }
 
   .left-content {
-    padding: 0px 20px 0px 10px;
-    height: @content-height;
+    padding: @padding-top 25px 0px 10px;
   }
+
   .right-content {
-    padding: 0px 15px 0px 0px;
-    height: @content-height;
+    padding: @padding-top 10px 0px 0px;
   }
 
 </style>

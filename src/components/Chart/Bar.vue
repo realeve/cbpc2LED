@@ -32,81 +32,20 @@
         }
       },
       getData() {
-        let cityData = [{
-            name: '上海',
-            value: 95
-          },
-          {
-            name: '北京',
-            value: 120
-          },
-          {
-            name: '石家庄',
-            value: 105
-          },
-          {
-            name: '南昌',
-            value: 90
-          },
-          {
-            name: '西安',
-            value: 90
-          },
-          {
-            name: '广州',
-            value: 90
-          },
-          {
-            name: '大连',
-            value: 80
-          },
-          {
-            name: '南宁',
-            value: 70
-          },
-          {
-            name: '拉萨',
-            value: 50
-          },
-          {
-            name: '长春',
-            value: 40
-          },
-          {
-            name: '包头',
-            value: 30
-          },
-          {
-            name: '重庆',
-            value: 20
-          },
-          {
-            name: '常州',
-            value: 10
-          },
-          {
-            name: '成都',
-            value: 400
-          },
-          {
-            name: '海口',
-            value: 30
-          },
-          {
-            name: '沈阳',
-            value: 110
-          },
-          {
-            name: '保定',
-            value: 120
-          }
-        ];
-        cityData.sort((a, b) => b.value - a.value);
-        this.cityData = cityData.slice(0, 5);
+        let url = 'http://cbpc540.applinzi.com/index.php';
+        let params = {
+          s: '/addon/Api/Api/commentByCity',
+          curid: this.curId
+        }
+        this.$http.jsonp(url, {
+          params
+        }).then(res => {
+          this.cityData = res.data;
+          this.chart.setOption(pieChart.refresh(this.cityData));
+        })
       },
       refreshChart() {
         this.chart.setOption(pieChart.init());
-        this.chart.setOption(pieChart.refresh(this.cityData));
       },
       init() {
         this.getData();
@@ -126,4 +65,5 @@
     height: 100px;
     width: 100%;
   }
+
 </style>

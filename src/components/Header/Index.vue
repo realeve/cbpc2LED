@@ -46,9 +46,19 @@
     },
     methods: {
       autoAdd() {
-        setInterval(() => {
-          this.refreshCounter(this.counter.end + Math.random() * 100000);
-        }, 3000);
+        // setInterval(() => {
+        //   this.refreshCounter(this.counter.end + Math.random() * 100000);
+        // }, 3000);
+        let url = 'http://cbpc540.applinzi.com/index.php';
+         let params = {
+          s: '/addon/Api/Api/getAllCommentNum'
+        }
+        this.$http.jsonp(url, {
+          params
+        }).then(res => {
+          this.counter.end = Number.parseInt(res.data[0].num);
+          this.refreshCounter(this.counter.end);
+        })
       },
       refreshCounter(val){
           this.counter.start = this.counter.end;
@@ -87,7 +97,7 @@
     .back_img {
       margin-top: -150px;
       width: 500px;
-      height: 250px;
+      height: 235px;
       background-image: url('./img/main.png');
       background-repeat: no-repeat;
       background-size: 100% 100%;
@@ -98,7 +108,7 @@
     display: flex;
     justify-content: flex-end;
     width: 38%;
-    margin-top: -240px;
+    margin-top: -220px;
     .beibei {
       width: 120px;
       height: 120px;
@@ -160,7 +170,7 @@
     white-space: nowrap;
     line-height: normal;
     font-family: "Microsoft Yahei";
-    margin-top: 15px;
+    margin-top: 5px;
     .prefix {
       font-size: 30px;
       font-size: 20pt;

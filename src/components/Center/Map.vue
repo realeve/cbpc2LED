@@ -13,11 +13,8 @@
   export default {
     data() {
       return {
-        commentData: []
+        cityData: []
       }
-    },
-    components: {
-
     },
     computed: {
       chart() {
@@ -34,93 +31,21 @@
         }
       },
       getData() {
-        this.commentData = [{
-            name: '上海',
-            value: 95
-          },
-          {
-            name: '北京',
-            value: 120
-          },
-          {
-            name: '石家庄',
-            value: 105
-          },
-          {
-            name: '南昌',
-            value: 90
-          },
-          {
-            name: '西安',
-            value: 90
-          },
-          {
-            name: '广州',
-            value: 90
-          },
-          {
-            name: '大连',
-            value: 80
-          },
-          {
-            name: '南宁',
-            value: 70
-          },
-          {
-            name: '拉萨',
-            value: 50
-          },
-          {
-            name: '长春',
-            value: 40
-          },
-          {
-            name: '包头',
-            value: 30
-          },
-          {
-            name: '重庆',
-            value: 20
-          },
-          {
-            name: '常州',
-            value: 10
-          },
-          {
-            name: '成都',
-            value: 400
-          },
-          {
-            name: '海口',
-            value: 30
-          },
-          {
-            name: '沈阳',
-            value: 110
-          },
-          {
-            name: '保定',
-            value: 120
-          }
-        ];
+        let url = 'http://cbpc540.applinzi.com/index.php';
+         let params = {
+          s: '/addon/Api/Api/commentByCity',
+          type:1
+        }
+        this.$http.jsonp(url, {
+          params
+        }).then(res => {
+          this.cityData = res.data;
+          this.chart.setOption(mapChart.refresh(this.cityData));          
+        })
       },
       refreshMap() {
         this.getData();
         this.chart.setOption(mapChart.init());
-
-        // let opData = [];
-        // this.commentData.forEach(item=>{
-        //   let maxI = Math.ceil(item.value/2);
-        //   for(let i=0;i<maxI;i++){
-        //     opData.push({
-        //       name:item.name,
-        //       value:2
-        //     });
-        //   }
-        // });
-        setTimeout(() => {
-          this.chart.setOption(mapChart.refresh(this.commentData));
-        }, 1000);
       },
       refreshChart() {
         this.refreshMap();

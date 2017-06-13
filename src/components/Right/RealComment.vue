@@ -6,13 +6,13 @@
       <!--<transition-group name="flip-list" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutUp">-->
       <!-- name="list-complete" 自定义样式   mode="in-out"-->
       <transition-group leave-active-class="animated fadeOutUp" enter-active-class="animated fadeInUp">
-        <div class="comment flip-list" v-for="item in commentData" :key="item.floor">
+        <div class="comment flip-list" v-for="item in showingData" :key="item.id">
           <div class="user-info">
-            <img class="header" :src="item.header" alt="">
+            <img class="header" :src="item.headimgurl">
           </div>
           <div class="comment-content">
-            <div class="nickname">#{{item.floor}} {{item.nickname}}</div>
-            <p class="comment-data">{{item.comment}}</p>
+            <div class="nickname">#{{item.id}} {{item.nickname}}</div>
+            <p class="comment-data">{{item.content}}</p>
           </div>
         </div>
       </transition-group>
@@ -25,58 +25,80 @@
   export default {
     data() {
       return {
-        commentData: []
+        queueData: [],
+        showingData: [],
+        curid:0,
+      }
+    },
+    watch: {
+      queueData(val) {
+        let len = val.length;
+        if (len == 0) {
+          return;
+        }
+        let i = 0;
+        let iTick = setInterval(() => {
+          this.showingData.push(val[i]);
+          this.showingData.shift();
+          i++;
+          // 如果循环完毕，开始读取下一组数据
+          if (i == len) {
+            this.getData();
+            clearInterval(iTick);
+          }
+        }, 500);
       }
     },
     methods: {
-      getData(floor) {
-        for (var i = 0; i < 3; i++) {
-          this.commentData.push({
-            header: '/static/avatar.jpg',
-            nickname: '宾不厌诈',
-            comment: '腾讯互娱年度发布会，自2012年开始打造“UP”主题已成为这一活动乃至腾讯互娱的重要品牌标签。',
-            floor: floor + i
-          });
+      getData() {
+        let url = 'http://cbpc540.applinzi.com/index.php';
+        let params = {
+          s: '/addon/Api/Api/getRealtimeComment',
+          curid:this.curid
         }
+        this.$http.jsonp(url, {
+          params
+        }).then(res => {
+
+          // 如果当前无数据，5秒后重新读取
+          if(res.data.length == 0){
+            this.refreshData();
+            return;
+          }
+          // 如果有数据，推送至队列中
+          this.queueData = res.data;
+
+          // 记录当前ID位置
+          this.curid = res.data[res.data.length-1].id;
+
+          // 初始读取时，加载前4条数据
+          if(this.showingData.length == 0){
+            this.showingData = this.queueData.splice(0, 4);
+          } 
+        })
       },
-      init() {
-        let i = 899;
-        this.getData(i);
-
-        // let j=0;
-        // setInterval(() => {
-        //   this.commentData[j].show = false;
-        //   j++   
-        // }, 3000);
-        setInterval(() => {
-          this.commentData.push({
-            header: '/static/avatar.jpg',
-            nickname: '宾不厌诈',
-            comment: '腾讯互娱年度发布会，自2012年开始打造“UP”主题已成为这一活动乃至腾讯互娱的重要品牌标签,发布会上提出的“泛娱乐”战略也已获得行业的认可与跟随。',
-            floor: i + 4
-          });
-          // this.commentData.sort((b,a)=>a.floor-b.floor);
-          // this.commentData.pop();
-          this.commentData.shift();
-          i++;
-        }, 1500)
-
+      refreshData(){
+        setTimeout(()=>{
+          this.getData();
+        },5000);
       }
     },
     mounted() {
-      this.init();
+        this.getData();
     }
   }
 
 </script>
 
 <style scoped lang="less">
- .wrap-title {
+  .wrap-title {
     justify-content: flex-end;
   }
+
   .sub-title {
     justify-content: flex-end;
   }
+
   .comment-wrapper {
     height: 340px;
   }
@@ -97,13 +119,10 @@
     border-radius: 4px;
     border: #443e9d solid 1px;
     box-shadow: 0 0 5px #195df3;
-    font-size:10pt;
-  }
-
-  // .comment:nth-child(1) {
+    font-size: 10pt;
+  } // .comment:nth-child(1) {
   //   margin-top: 0px;
   // }
-
   .user-info {
     display: flex; // flex-direction: column;
     justify-content: flex-start;
@@ -140,15 +159,15 @@
       color: #fc0; // rgb(15, 210, 240);
     }
     .comment-data {
-      text-indent: 2em;
+      // text-indent: 2em;
+      min-width: 270px;
     }
   }
 
   .list-complete-item,
   .flip-list {
     transition: all 1s;
-  }
-  // .list-complete-enter {
+  } // .list-complete-enter {
   //   opacity: 0;
   //   transform: translateY(30px);
   // }
@@ -157,9 +176,8 @@
   //   transform: translateY(-30px);
   // }
   .list-complete-leave-active,
-  .fadeOutUp {
+  .animated {
     position: absolute;
-    padding-right:15px;
   }
 
 </style>

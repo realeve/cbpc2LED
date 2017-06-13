@@ -3,10 +3,10 @@
     <div class="wrap-title">幸运楼层</div>
     <div class="sub-title">LUCKY USERS</div>
     <div class="data-wrapper">
-      <div class="user-info" v-for="i of 4" :key="i">
-        <img class="header" src="/static/avatar.jpg">
-        <div class="nickname last">宾不厌诈</div>
-        <div class="nickname last">#{{i*200+16}}</div>
+      <div class="user-info" v-for="item in luckyUsers" :key="item.id">
+        <img class="header" :src="item.headimgurl">
+        <div class="nickname last">{{item.nickname}}</div>
+        <div class="nickname last">#{{item.id}}</div>
       </div>
     </div>
   </div>
@@ -18,17 +18,23 @@
   export default {
     data() {
       return {
-        commentData: []
+        luckyUsers: []
       }
     },
     methods: {
       getData() {
-
-
+        let url = 'http://cbpc540.applinzi.com/index.php';
+        let params = {
+          s: '/addon/Api/Api/luckyUser'
+        }
+        this.$http.jsonp(url, {
+          params
+        }).then(res => {
+          this.luckyUsers = res.data;
+        })
       },
       init() {
         this.getData();
-
       }
     },
     mounted() {
@@ -43,7 +49,7 @@
     height: 90px;
   }
 
-  @userPicSize:60px;
+  @userPicSize: 60px;
 
   .user-info {
     margin: -5px 10px 5px 10px;
@@ -56,13 +62,13 @@
       cursor: pointer;
       box-shadow: 0 0 24px #195df5;
     }
-    
+
     .nickname {
       font-size: 10pt;
       color: #ddd;
       text-align: center;
-      line-height:12pt;
+      line-height: 12pt;
     }
-  }   
+  }
 
 </style>

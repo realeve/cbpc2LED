@@ -15,9 +15,6 @@
         commentData: []
       }
     },
-    components: {
-
-    },
     computed: {
       chart() {
         return echarts.init(this.$refs.chart);
@@ -33,19 +30,29 @@
         }
       },
       getData() {
-
+        let url = 'http://cbpc540.applinzi.com/index.php';
+         let params = {
+          s: '/addon/Api/Api/commentByMinutes'
+        }
+        this.$http.jsonp(url, {
+          params
+        }).then(res => {
+          this.commentData = res.data;  
+          let option =lineChart.refresh(this.commentData);
+          this.chart.setOption(option);  
+        })
       },
       refreshChart() {
-        let lastData = lineChart.refresh();
         this.chart.setOption(lineChart.init());
-        setInterval(() => {
-          lastData = lineChart.refreshLine(lastData.series[0].data);
-          this.chart.setOption(lastData);
-        }, 1000);
+        // setInterval(() => {
+        //   lastData = lineChart.refreshLine(lastData.series[0].data);
+        //   this.chart.setOption(lastData);            
+        // }, 1000);
       },
       init() {
         this.refreshChart();
         this.initEvent();
+        this.getData();
       }
     },
     mounted() {
@@ -69,7 +76,7 @@
   }
 
   .chart {
-    height: 100px;
+    height: 85px;
     width: 90%;
   }
 

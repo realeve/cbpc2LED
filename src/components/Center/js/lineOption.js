@@ -1,4 +1,4 @@
-let getLineData = (hour = 10) => {
+let getLineData = (hour = 4) => {
     let date = '2017/6/16';
     let data = [];
     for (let i = 0; i < 60; i++) {
@@ -8,7 +8,7 @@ let getLineData = (hour = 10) => {
 }
 
 function init() {
-    let axisColor = '#585b86';
+    let axisColor = '#989bb6';
     let lineColor = '#00d7fc';
     let option = {
         grid: {
@@ -33,6 +33,11 @@ function init() {
                 lineStyle: {
                     color: axisColor,
                     width: 2,
+                }
+            },
+            axisLabel: {
+                formatter(date) {
+                    return (new Date(date)).toLocaleTimeString().substr(0, 5);
                 }
             }
         }],
@@ -80,11 +85,12 @@ function init() {
     return option;
 }
 
-let refresh = () => {
+let refresh = (data) => {
+    let seriesData = data.map(item => [item.name, item.value]);
     let option = {
         series: [{
             id: 'line',
-            data: getLineData(),
+            data: seriesData //: getLineData(),
         }]
     };
     return option;
