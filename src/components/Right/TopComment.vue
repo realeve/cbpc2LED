@@ -3,7 +3,7 @@
     <div class="wrap-title">精选留言</div>
     <div class="sub-title">EXCELLENT MESSAGE</div>
     <div class="data-wrapper">
-      <div class="comment" v-for="i of 2" :key="i" :class="{last:(i>1)}">
+      <div class="comment" v-for="i of 1" :key="i" :class="{last:(i>1)}">
         <div class="user-info">
           <img class="header" src="/static/avatar.jpg" alt="">
           <div class="nickname last">宾不厌诈</div>
@@ -44,45 +44,15 @@
 </script>
 
 <style scoped lang="less">
-  .text,
-  {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
   .wrap-title {
-    color: #fff;
-    height: 20px;
-    font-size: 22px;
-    .text;
+    justify-content: flex-end;
   }
-
   .sub-title {
-    width: 100%;
-    height: 32px;
-    color: rgb(255, 204, 0);
-    font-size: 10px;
-    .text;
-  }
-  .trans-border{
-    border-radius: 0px;
-    border-style: solid;
-    border-width: 16px 17px 17px;
-    border-image-source: url("./img/data-wrapper.png");
-    border-image-slice: 16 17 17 fill;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: repeat;
-    background: none;
+    justify-content: flex-end;
   }
   .data-wrapper {
-    height: 340px;
-    width: 100%; // box-shadow: 0 0 14px #195df3;
+    height: 170px;
+    border:none;
   }
 
   .center {
@@ -138,8 +108,8 @@
     align-items: flex-start;
     padding-left: 1em;
     height: 100%;
+    font-size:10pt;
     .nickname {
-      font-size: 11pt;
       color: #fc0;// rgb(15, 210, 240);
     }
     .comment-data {

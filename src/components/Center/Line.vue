@@ -69,8 +69,8 @@
   }
 
   .chart {
-    height: 130px;
-    width: 100%;
+    height: 100px;
+    width: 90%;
   }
 
 </style>

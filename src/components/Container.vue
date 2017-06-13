@@ -42,7 +42,7 @@
 
 </script>
 <style scoped lang="less">
-  @content-height:780px;
+  @content-height:460px;
   @div-offset:300px;
   .content {
     margin-top: -@div-offset;
@@ -50,12 +50,12 @@
   }
 
   .center-content {
-    padding: 0 50px;
-    padding-top: @div-offset+20px;
+    padding: 0 10px 0 50px;
+    padding-top: 220px;
   }
 
   .left-content {
-    padding: 0px 0px 0px 10px;
+    padding: 0px 20px 0px 10px;
     height: @content-height;
   }
   .right-content {

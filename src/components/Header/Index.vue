@@ -9,11 +9,11 @@
     <div class="beibei_wrapper">
       <div class="beibei"></div>
     </div>
-    <div class="text">
+    <div class="main-text">
       <div class="number">2</div>
       <div class="word">
         <div class="title">品质成钞</div>
-        <div class="sub-title">周年庆</div>
+        <div class="main-title">周年庆</div>
       </div>
     </div>
     <div class="center">
@@ -47,7 +47,7 @@
     methods: {
       autoAdd() {
         setInterval(() => {
-          this.refreshCounter(this.counter.end + Math.random() * 3000);
+          this.refreshCounter(this.counter.end + Math.random() * 100000);
         }, 3000);
       },
       refreshCounter(val){
@@ -74,7 +74,7 @@
     .center;
     margin-top: -10px;
     .main_img {
-      width: 1128px;
+      width: 800px;
       height: 160px;
       background-image: url('./img/header_back.png');
       background-repeat: no-repeat;
@@ -85,9 +85,9 @@
   .back_wrapper {
     .center;
     .back_img {
-      margin-top: -155px;
-      width: 720px;
-      height: 312px;
+      margin-top: -150px;
+      width: 500px;
+      height: 250px;
       background-image: url('./img/main.png');
       background-repeat: no-repeat;
       background-size: 100% 100%;
@@ -98,20 +98,20 @@
     display: flex;
     justify-content: flex-end;
     width: 38%;
-    margin-top: -310px;
+    margin-top: -240px;
     .beibei {
-      width: 160px;
-      height: 180px;
+      width: 120px;
+      height: 120px;
       background-image: url('./img/beibei.png');
       background-repeat: no-repeat;
       background-size: 100% 100%;
     }
   }
 
-  @main-text-size: 100pt;
-  .text {
+  @main-text-size: 90pt;
+  .main-text {
     .center;
-    margin-top: -170px;
+    margin-top: -130px;
     color: @white; // text-shadow: 0 5px 14px #c4b59d, 1px -1px 1px #fff;
     .number {
       line-height: 0pt;
@@ -122,15 +122,15 @@
 
     .word {
       .title,
-      .sub-title {
+      .main-title {
         font-weight: bold;
         text-align: center;
-        font-size: 40pt;
-        line-height: 40pt;
+        font-size: 35pt;
+        line-height: 35pt;
         letter-spacing: 25px;
       }
       .title {
-        font-size: 30pt;
+        font-size: 25pt;
       }
     }
   }
@@ -147,7 +147,7 @@
     font-size: 12pt;
     text-overflow: ellipsis;
     white-space: nowrap;
-    letter-spacing: 10pt;
+    letter-spacing: 8pt;
     overflow: hidden;
   }
 

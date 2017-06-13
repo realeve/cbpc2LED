@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-comment/>
-    <real-comment class="margin-top-20"/>
+    <real-comment class="margin-top-10"/>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
 </script>
 
 <style scoped lang="less">
-  .margin-top-20{
-    margin-top:30px;
+  .margin-top-10{
+    margin-top:10px;
   }
 </style>

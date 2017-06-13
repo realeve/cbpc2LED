@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-map/>
-    <v-line style="margin-top:-40px;"/>
+    <v-line style="margin-top:-80px;"/>
   </div>
 </template>
 
