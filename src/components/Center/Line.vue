@@ -44,15 +44,14 @@
       },
       refreshChart() {
         this.chart.setOption(lineChart.init());
-        // setInterval(() => {
-        //   lastData = lineChart.refreshLine(lastData.series[0].data);
-        //   this.chart.setOption(lastData);            
-        // }, 1000);
       },
       init() {
         this.refreshChart();
         this.initEvent();
         this.getData();
+        setInterval(()=>{
+          this.getData();
+        },5000);
       }
     },
     mounted() {

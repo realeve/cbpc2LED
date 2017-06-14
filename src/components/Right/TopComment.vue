@@ -33,12 +33,13 @@
     watch: {
       commentData(val) {
         let i = 0;
-        setInterval(() => {
+        let iTick = setInterval(() => {
           this.selectedData.shift();
           this.selectedData.push(val[i]);
           i++;
           if (i == val.length) {
-            i = 0;
+            clearInterval(iTick);
+            this.getData();
           }
         }, 4000);
       }
@@ -146,6 +147,5 @@
   .animated {
     position: absolute;
   }
-
 
 </style>

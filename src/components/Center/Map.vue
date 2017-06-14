@@ -32,23 +32,25 @@
       },
       getData() {
         let url = 'http://cbpc540.applinzi.com/index.php';
-         let params = {
+        let params = {
           s: '/addon/Api/Api/commentByCity',
-          type:1
+          type: 1
         }
         this.$http.jsonp(url, {
           params
         }).then(res => {
           this.cityData = res.data;
-          this.chart.setOption(mapChart.refresh(this.cityData));          
+          this.chart.setOption(mapChart.refresh(this.cityData));
         })
       },
-      refreshMap() {
-        this.getData();
-        this.chart.setOption(mapChart.init());
-      },
       refreshChart() {
-        this.refreshMap();
+        this.chart.setOption(mapChart.init());
+        this.getData();
+
+        // 20秒更新一次数据
+        setInterval(() => {
+          this.getData();
+        }, 20000);
       },
       init() {
         echarts.registerMap('china', chinaJson);
@@ -64,8 +66,9 @@
 </script>
 
 <style scoped lang="less">
-  .chart {    
+  .chart {
     width: 100%;
     height: 550px;
   }
+
 </style>

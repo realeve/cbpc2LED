@@ -38,8 +38,8 @@
         counter: {
           start: 0,
           end: 0,
-          options:{
-            useGrouping:false
+          options: {
+            useGrouping: false
           }
         }
       }
@@ -50,7 +50,7 @@
         //   this.refreshCounter(this.counter.end + Math.random() * 100000);
         // }, 3000);
         let url = 'http://cbpc540.applinzi.com/index.php';
-         let params = {
+        let params = {
           s: '/addon/Api/Api/getAllCommentNum'
         }
         this.$http.jsonp(url, {
@@ -60,13 +60,15 @@
           this.refreshCounter(this.counter.end);
         })
       },
-      refreshCounter(val){
-          this.counter.start = this.counter.end;
-          this.counter.end = val;
+      refreshCounter(val) {
+        this.counter.start = this.counter.end;
+        this.counter.end = val;
       }
     },
     mounted() {
-      this.autoAdd();
+      setInterval(() => {
+        this.autoAdd();
+      }, 5000);
     }
   }
 

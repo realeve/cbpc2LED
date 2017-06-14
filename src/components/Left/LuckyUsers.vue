@@ -3,11 +3,13 @@
     <div class="wrap-title">幸运楼层</div>
     <div class="sub-title">LUCKY USERS</div>
     <div class="data-wrapper">
-      <div class="user-info" v-for="item in luckyUsers" :key="item.id">
-        <img class="header" :src="item.headimgurl">
-        <div class="nickname last">{{item.nickname}}</div>
-        <div class="nickname last">#{{item.id}}</div>
-      </div>
+      <transition-group leave-active-class="animated fadeOutLeft" enter-active-class="animated fadeInRight">
+        <div class="user-info flip-list" v-for="item in showingData" :key="item.id">
+          <img class="header" :src="item.headimgurl">
+          <div class="nickname last">{{item.nickname}}</div>
+          <div class="nickname last">#{{item.id}}</div>
+        </div>
+      </transition-group>
     </div>
   </div>
 
@@ -18,7 +20,27 @@
   export default {
     data() {
       return {
-        luckyUsers: []
+        showingData: [],
+        queueData: [],
+      }
+    },
+    watch: {
+      queueData(val) {
+        let len = val.length;
+        if (len == 0) {
+          return;
+        }
+        let i = 0;
+        let iTick = setInterval(() => {
+          this.showingData.shift();
+          this.showingData.push(val[i]);
+          i++;
+          // 如果循环完毕，开始读取下一组数据
+          if (i == len) {
+            clearInterval(iTick);
+            this.getData();
+          }
+        }, 1000);
       }
     },
     methods: {
@@ -30,7 +52,10 @@
         this.$http.jsonp(url, {
           params
         }).then(res => {
-          this.luckyUsers = res.data;
+          if (this.showingData.length == 0) {
+            this.showingData = res.data.splice(0, 4);
+          }
+          this.queueData = res.data;
         })
       },
       init() {
@@ -69,6 +94,15 @@
       text-align: center;
       line-height: 12pt;
     }
+  }
+
+  .flip-list {
+    display: inline-block; // 无此属性则为纵向排列
+    transition: all 1s;
+  }
+
+  .animated {
+    position: absolute;
   }
 
 </style>
