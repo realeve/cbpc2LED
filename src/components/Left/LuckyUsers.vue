@@ -28,6 +28,9 @@
       queueData(val) {
         let len = val.length;
         if (len == 0) {
+          setTimeout(()=>{
+            this.getData();
+          },10000);
           return;
         }
         let i = 0;
@@ -52,7 +55,7 @@
         this.$http.jsonp(url, {
           params
         }).then(res => {
-          if (this.showingData.length == 0) {
+          if (this.showingData.length < 4) {
             this.showingData = res.data.splice(0, 4);
           }
           this.queueData = res.data;
