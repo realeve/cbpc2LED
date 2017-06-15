@@ -75,7 +75,7 @@
   }
 
   .chart {
-    height: 85px;
+    height: 80px;
     width: 90%;
   }
 

@@ -29,6 +29,6 @@
 
 <style scoped lang="less">
   .margin-top-15{
-    margin-top:15px;
+    margin-top:8px;
   }
 </style>
