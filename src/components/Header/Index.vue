@@ -110,7 +110,7 @@
     display: flex;
     justify-content: flex-end;
     width: 38%;
-    margin-top: -220px;
+    margin-top: -230px;
     .beibei {
       width: 120px;
       height: 120px;
@@ -123,7 +123,7 @@
   @main-text-size: 90pt;
   .main-text {
     .center;
-    margin-top: -130px;
+    margin-top: -120px;
     color: @white; // text-shadow: 0 5px 14px #c4b59d, 1px -1px 1px #fff;
     .number {
       line-height: 0pt;
