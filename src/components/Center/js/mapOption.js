@@ -22,12 +22,16 @@ let convertData = data => {
 };
 
 let convertScatterData = data => {
-    return data.map(item => {
-        return {
+    let arr=[];
+    data.forEach(item => {
+        if(typeof geoCoordMap[item.name]!='undefined'){
+             arr.push({
             name: item.name,
             value: geoCoordMap[item.name].concat([item.value])
-        }
+        });
+        }       
     });
+    return arr;
 }
 
 let getTopData = data => {
